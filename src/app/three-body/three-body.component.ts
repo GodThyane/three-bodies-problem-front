@@ -172,6 +172,7 @@ export class ThreeBodyComponent implements OnInit {
       id: Date.now()
     }).subscribe(res => {
       this.gif = res.res;
+      this.isWaiting = false;
     });
   }
 }
