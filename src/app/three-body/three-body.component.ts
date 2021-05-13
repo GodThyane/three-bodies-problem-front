@@ -88,17 +88,6 @@ export class ThreeBodyComponent implements OnInit {
   isWaiting = false;
 
   constructor(private socket: SocketService, private fb: FormBuilder) {
-    this.socket.outEven.subscribe(res => {
-      console.log(res);
-      if (res.isGif) {
-        this.gif = res.res;
-      } else {
-        this.img = res.res;
-      }
-      if (this.gif !== '') {
-        this.isWaiting = false;
-      }
-    });
   }
 
   ngOnInit(): void {
@@ -151,6 +140,14 @@ export class ThreeBodyComponent implements OnInit {
         positions: [this.xC1, this.yC1, this.zC1,
           this.xC2, this.yC2, this.zC2,
           this.xC3, this.yC3, this.zC3]
+      }).subscribe(res => {
+        if (res.isGif) {
+          this.img = res.res;
+        } else {
+          this.gif = res.res;
+        }
+      }, error => {
+        console.log(error);
       });
     }
   }
@@ -159,7 +156,7 @@ export class ThreeBodyComponent implements OnInit {
   submit(): void {
     this.gif = '';
     this.isWaiting = true;
-    this.socket.sendMessage('event', {
+    this.socket.sendMessage('gif', {
       masseRef: this.mRef,
       masses: [this.m1, this.m2, this.m3],
       tRef: this.tRef,
@@ -173,6 +170,8 @@ export class ThreeBodyComponent implements OnInit {
         this.xC2v, this.yC2v, this.zC2v,
         this.xC3v, this.yC3v, this.zC3v],
       id: Date.now()
+    }).subscribe(res => {
+      this.gif = res.res;
     });
   }
 }
