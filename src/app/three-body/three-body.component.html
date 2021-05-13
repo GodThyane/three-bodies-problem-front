@@ -1,0 +1,223 @@
+<section style="width: 100%; max-width: 1200px; margin: 0 auto">
+  <form class="example-container" [formGroup]="myForm" style="margin-top: 1rem">
+    <div class="masses my-card">
+      <p>Masas</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 8rem">
+        <mat-label>Masa de referencia</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="fontSizeControl" [(ngModel)]="mRef"
+               required>
+        <span matSuffix>kg</span>
+        <mat-error *ngIf="fontSizeControl.invalid">Masa mínima: 0 kg</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Masa #1</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="fontSizeControl2" [(ngModel)]="m1"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="fontSizeControl2.invalid">Masa mínima: 0 U</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Masa #2</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="fontSizeControl3" [(ngModel)]="m2"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="fontSizeControl3.invalid">Masa mínima: 0 U</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 5.5rem">
+        <mat-label>Masa #3</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="fontSizeControl4" [(ngModel)]="m3"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="fontSizeControl4.invalid">Masa mínima: 0 U</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="times my-card">
+      <p>Tiempos</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem">
+        <mat-label>Tiempo de referencia</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="fontSizeControlTRef" [(ngModel)]="tRef"
+               required>
+        <span matSuffix>s</span>
+        <mat-error *ngIf="fontSizeControlTRef.invalid">Tiempo mínimo mínima: 0 s</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Periodos orbitales</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="fontSizeControlPer" [(ngModel)]="tOrb"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="fontSizeControlPer.invalid">Tiempo de órbita mínimo: 0 s</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="distances my-card">
+      <p>Posiciones iniciales</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 100%">
+        <mat-label>Distancia de referencia</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" [formControl]="formNotExistDistance" [(ngModel)]="pRef"
+               required>
+        <span matSuffix>m</span>
+        <mat-error *ngIf="formNotExistDistance.invalid">Distancia mínima: 0 m</mat-error>
+      </mat-form-field>
+      <p class="p-min">Cuerpo 1</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>X</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formXPC1" [(ngModel)]="xC1"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formXPC1.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Y</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formYPC1" [(ngModel)]="yC1"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formYPC1.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 5.5rem">
+        <mat-label>Z</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formZPC1" [(ngModel)]="zC1"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formZPC1.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <p class="p-min">Cuerpo 2</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>X</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formXPC2" [(ngModel)]="xC2"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formXPC2.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Y</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formYPC2" [(ngModel)]="yC2"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formYPC2.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 5.5rem">
+        <mat-label>Z</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formZPC2" [(ngModel)]="zC2"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formZPC2.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <p class="p-min">Cuerpo 3</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>X</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formXPC3" [(ngModel)]="xC3"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formXPC3.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Y</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formYPC3" [(ngModel)]="yC3"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formYPC3.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 5.5rem">
+        <mat-label>Z</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formZPC3" [(ngModel)]="zC3"
+               required (change)="sendPositions()">
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formZPC3.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="velocities my-card">
+      <p>Velocidades iniciales</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 100%">
+        <mat-label>Velocidad de referencia</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" [formControl]="formNotExistVelocity" [(ngModel)]="vRef"
+               required>
+        <span matSuffix>m/s</span>
+        <mat-error *ngIf="formNotExistVelocity.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <p class="p-min">Cuerpo 1</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>X</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formXVC1" [(ngModel)]="xC1v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formXVC1.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Y</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formYVC1" [(ngModel)]="yC1v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formYVC1.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 5.5rem">
+        <mat-label>Z</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formZVC1" [(ngModel)]="zC1v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formZVC1.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <p class="p-min">Cuerpo 2</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>X</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formXVC2" [(ngModel)]="xC2v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formXVC2.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Y</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formYVC2" [(ngModel)]="yC2v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formYVC2.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 5.5rem">
+        <mat-label>Z</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formZVC2" [(ngModel)]="zC2v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formZVC2.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <p class="p-min">Cuerpo 3</p>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>X</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formXVC3" [(ngModel)]="xC3v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formXVC3.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-right: 2rem; width: 5.5rem">
+        <mat-label>Y</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formYVC3" [(ngModel)]="yC3v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formYVC3.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 5.5rem">
+        <mat-label>Z</mat-label>
+        <input matInput type="number" placeholder="Ex. 1" min="0" [formControl]="formZVC3" [(ngModel)]="zC3v"
+               required>
+        <span matSuffix>U</span>
+        <mat-error *ngIf="formZVC3.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div style="text-align: center; margin-top: 2rem">
+    <button type="submit" mat-raised-button color="primary" style="font-size: 1rem; margin-bottom: 3rem"
+            [disabled]="myForm.invalid || (!gif && isWaiting)" (click)="submit()">Iniciar simulación
+    </button>
+    <div style="position: absolute; left: calc(50% - 50px)" *ngIf="!gif && isWaiting">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</section>
+<div style="width: 100%">
+  <img src="data:image/gif;base64,{{gif}}" alt="Simulación" *ngIf="gif" style=" display:block;margin:auto;">
+</div>
+<div style="width: 100%">
+  <img src="data:image/png;base64,{{img}}" alt="Prview" *ngIf="!gif && !isWaiting && img"
+       style=" display:block;margin:auto;">
+</div>
+
